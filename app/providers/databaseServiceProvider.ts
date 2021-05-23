@@ -1,11 +1,11 @@
 import { denodbConfig } from "../../config/denodb.ts";
 import {
   Database,
+  MongoDBConnector,
   MySQLConnector,
   PostgresConnector,
   ServiceProvider,
   SQLite3Connector,
-  MongoDBConnector
 } from "../../deps.ts";
 import models from "../models/index.ts";
 
@@ -30,7 +30,9 @@ export class DatabaseServiceProvider extends ServiceProvider {
         connection = new MongoDBConnector(denodbConfig.connections.mongodb);
         break;
       default:
-        throw new Error("Please select a valid default database in your config/denodb.ts file");
+        throw new Error(
+          "Please select a valid default database in your config/denodb.ts file",
+        );
     }
 
     const db = new Database(connection);
