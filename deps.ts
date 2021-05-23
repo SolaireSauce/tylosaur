@@ -1,5 +1,5 @@
 export * from "https://raw.githubusercontent.com/tylosaur/framework/main/mod.ts";
-export { config } from "https://deno.land/x/dotenv@2.0.0/mod.ts";
+export { config } from "https://deno.land/x/dotenv@v2.0.0/mod.ts";
 export {
   Database,
   DataTypes,
