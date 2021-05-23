@@ -1,7 +1,9 @@
+import { env } from "../deps.ts";
+
 export const viewEngineConfig: ViewEngineConfig = {
-  use: "eta",
-  viewRoot: "resources/views",
-  fileExtsion: ".eta",
+  use: env("VIEW_ENGINE","eta"),
+  viewRoot: env("VIEW_ROOT","resources/views"),
+  fileExtsion: env("VIEW_EXT",".eta"),
   // partialDirs: ["resources/views/partials"],
 };
 

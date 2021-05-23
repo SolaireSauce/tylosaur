@@ -1,31 +1,37 @@
-import { MySQLOptions,PostgresOptions, SQLite3Options, MongoDBOptions } from "../deps.ts";
+import {
+env,
+  MongoDBOptions,
+  MySQLOptions,
+  PostgresOptions,
+  SQLite3Options,
+} from "../deps.ts";
 
 export const denodbConfig: DenodbConfig = {
-  default: "pgsql",
+  default: env("DB_CONNECTION","pgsql"),
 
   connections: {
     sqlite: {
-      filepath: "storage/db/db.sqlite"
+      filepath: "storage/db/db.sqlite",
     },
     mysql: {
-      host: "127.0.0.1",
-      port: 3306,
-      database: "tylosaur",
-      username: "tylosaur",
-      password: "secret"
+      host: env("DB_HOST","127.0.0.1"),
+      port: +env("DB_PORT",3306),
+      database: env("DB_DATABASE","tylosaur"),
+      username: env("DB_USERNAME","tylosaur"),
+      password: env("DB_PASSWORD","secret"),
     },
     pgsql: {
-      host: "127.0.0.1",
-      port: 5432,
-      database: "tylosaur",
-      username: "tylosaur",
-      password: "secret"
+      host: env("DB_HOST","127.0.0.1"),
+      port: +env("DB_PORT",5432),
+      database: env("DB_DATABASE","tylosaur"),
+      username: env("DB_USERNAME","tylosaur"),
+      password: env("DB_PASSWORD","secret"),
     },
     mongodb: {
-     uri: "127.0.0.1",
-     database: "tylosaur"
-    }
-  }
+      uri: env("DB_HOST","127.0.0.1"),
+      database: env("DB_DATABASE","tylosaur"),
+    },
+  },
 };
 
 type DenodbConfig = {
@@ -34,6 +40,6 @@ type DenodbConfig = {
     sqlite: SQLite3Options;
     mysql: MySQLOptions;
     pgsql: PostgresOptions;
-    mongodb: MongoDBOptions
+    mongodb: MongoDBOptions;
   };
 };
