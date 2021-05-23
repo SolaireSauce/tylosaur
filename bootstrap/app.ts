@@ -1,4 +1,4 @@
-import { Tylosaur } from "../deps.ts";
+import { Tylosaur, config } from "../deps.ts";
 import serviceProviders from "../app/providers/index.ts";
 
 /*
@@ -12,7 +12,7 @@ import serviceProviders from "../app/providers/index.ts";
 */
 
 // Create application
-const tylosaur = new Tylosaur();
+const tylosaur = new Tylosaur(config());
 
 /*
 |--------------------------------------------------------------------------

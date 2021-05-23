@@ -1,10 +1,19 @@
 export * from "https://raw.githubusercontent.com/tylosaur/framework/main/mod.ts";
+export { config } from "https://deno.land/x/dotenv@2.0.0/mod.ts";
 export {
   Database,
   DataTypes,
   Model,
   MySQLConnector,
   PostgresConnector,
+  SQLite3Connector,
+  MongoDBConnector
+} from "https://deno.land/x/denodb@v1.0.38/mod.ts";
+export type {
+  MySQLOptions,
+  PostgresOptions,
+  SQLite3Options,
+  MongoDBOptions
 } from "https://deno.land/x/denodb@v1.0.38/mod.ts";
 export { assert } from "https://deno.land/std@0.97.0/testing/asserts.ts";
 export { superdeno } from "https://deno.land/x/superdeno@4.2.1/mod.ts";
@@ -16,3 +25,4 @@ export type {
 } from "https://deno.land/x/opine@1.4.0/mod.ts";
 export { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";
 export { renderFile } from "https://deno.land/x/eta@v1.12.1/mod.ts";
+

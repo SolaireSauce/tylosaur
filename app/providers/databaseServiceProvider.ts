@@ -4,6 +4,8 @@ import {
   MySQLConnector,
   PostgresConnector,
   ServiceProvider,
+  SQLite3Connector,
+  MongoDBConnector
 } from "../../deps.ts";
 import models from "../models/index.ts";
 
@@ -14,15 +16,21 @@ export class DatabaseServiceProvider extends ServiceProvider {
 
   boot(): void {
     let connection;
-    switch (denodbConfig.use) {
-      case "MySQL":
-        connection = new MySQLConnector(denodbConfig.connection);
+    switch (denodbConfig.default) {
+      case "sqlite":
+        connection = new SQLite3Connector(denodbConfig.connections.sqlite);
         break;
-      case "PostgreSQL":
-        connection = new PostgresConnector(denodbConfig.connection);
+      case "mysql":
+        connection = new MySQLConnector(denodbConfig.connections.mysql);
+        break;
+      case "pgsql":
+        connection = new PostgresConnector(denodbConfig.connections.pgsql);
+        break;
+      case "mongodb":
+        connection = new MongoDBConnector(denodbConfig.connections.mongodb);
         break;
       default:
-        throw new Error("Please select a valid database");
+        throw new Error("Please select a valid default database in your config/denodb.ts file");
     }
 
     const db = new Database(connection);
